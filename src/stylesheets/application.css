@@ -2,4 +2,45 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  min-height: 100vh;
+  padding: 15px;
+  position: relative;
+  background-color: #f5f5f5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.page-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 500px;
+  height: 500px;
+  margin: auto;
+  background-color: #fff;
+}
+
+.sq-list {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 1601px;
+  height: 1601px;
+  background-color: green;
+}
+
+.sq-item {
+  width: 50px;
+  height: 50px;
+}
+.sq-item:hover {
+  background-color: rebeccapurple;
+}
+.sq-item--active {
+  background-color: red;
 }
