@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import cnames from 'classnames';
+import appConfig from 'appConfig';
+
+const { width, height, sqsize } = appConfig;
 
 class Page extends Component {
 
   state = {
-    items: Array.from(Array(1024).keys()),
+    items: Array.from(Array(width * height).keys()),
     activeItems: []
   }
 
@@ -21,7 +24,8 @@ class Page extends Component {
     const cname = cnames('sq-item', {
       'sq-item--active': this.state.activeItems.includes(item)
     });
-    return (<div className={cname} key={item} onClick={() => this.handleClick(item)} />);
+    const style = { width: `${sqsize}px`, height: `${sqsize}px` };
+    return (<div className={cname} key={item} style={style} onClick={() => this.handleClick(item)} />);
   }
 
   render() {
@@ -29,7 +33,7 @@ class Page extends Component {
     return (
       <div className='page-wrapper'>
         <Scrollbars>
-          <div className="sq-list">
+          <div className="sq-list" style={{width: `${width * sqsize}px`, height: `${height * sqsize}px`}}>
             {items.map(this.renderItem)}
           </div>
         </Scrollbars>
