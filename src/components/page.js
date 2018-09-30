@@ -1,8 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import styled, { createGlobalStyle } from 'styled-components'
 import { FieldBody, FieldSquare } from 'components/field';
 import { generateField } from 'helpers/field';
 
-class Page extends Component {
+const GlobalStyle = createGlobalStyle`
+  body {
+    position: relative;
+    margin: 0;
+    padding: 15px;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    font-family: sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+`;
+
+const StyledRow = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flext-start;
+  justify-content: flex-start;
+`;
+
+export default class Page extends Component {
 
   state = {
     items: generateField(),
@@ -18,7 +41,7 @@ class Page extends Component {
   }
 
   renderRow = (row) => {
-    return (<div className="sq-row" key={row.i}>{row.cols.map(this.renderCol)}</div>);
+    return (<StyledRow key={row.i}>{row.cols.map(this.renderCol)}</StyledRow>);
   }
 
   renderCol = (col) => {
@@ -28,11 +51,12 @@ class Page extends Component {
 
   render() {
     return (
-      <FieldBody>
-        {this.state.items.map(this.renderRow)}
-      </FieldBody>
+      <Fragment>
+        <FieldBody>
+          {this.state.items.map(this.renderRow)}
+        </FieldBody>
+        <GlobalStyle />
+      </Fragment>
     );
   }
 }
-
-export default Page;
