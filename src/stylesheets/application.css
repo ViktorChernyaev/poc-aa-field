@@ -26,10 +26,17 @@ body {
 
 .sq-list {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   align-items: flex-start;
   justify-content: flex-start;
   background-color: green;
+}
+
+.sq-row {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flext-start;
+  justify-content: flex-start;
 }
 
 .sq-item {

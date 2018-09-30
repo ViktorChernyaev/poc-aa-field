@@ -6,4 +6,4 @@ export default {
   width,
   height,
   sqsize
-}
+};

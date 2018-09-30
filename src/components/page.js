@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { FieldBody, FieldSquare } from 'components/field';
-import { sizes } from 'appConfig';
-
-const { width, height } = sizes;
+import { generateField } from 'helpers/field';
 
 class Page extends Component {
 
   state = {
-    items: Array.from(Array(width * height).keys()),
+    items: generateField(),
     activeItems: []
   }
 
@@ -19,11 +17,19 @@ class Page extends Component {
     }
   }
 
+  renderRow = (row) => {
+    return (<div className="sq-row" key={row.i}>{row.cols.map(this.renderCol)}</div>);
+  }
+
+  renderCol = (col) => {
+    const props = { item: col, state: this.state, handleClick: this.handleClick };
+    return (<FieldSquare key={col.i} {...props} />);
+  }
+
   render() {
-    const { items } = this.state;
     return (
       <FieldBody>
-        {items.map(item => (<FieldSquare key={item} item={item} state={this.state} handleClick={this.handleClick} />))}
+        {this.state.items.map(this.renderRow)}
       </FieldBody>
     );
   }
