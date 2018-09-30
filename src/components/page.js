@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Scrollbars } from 'react-custom-scrollbars';
-import cnames from 'classnames';
-import appConfig from 'appConfig';
+import { FieldBody, FieldSquare } from 'components/field';
+import { sizes } from 'appConfig';
 
-const { width, height, sqsize } = appConfig;
+const { width, height } = sizes;
 
 class Page extends Component {
 
@@ -20,24 +19,12 @@ class Page extends Component {
     }
   }
 
-  renderItem = (item) => {
-    const cname = cnames('sq-item', {
-      'sq-item--active': this.state.activeItems.includes(item)
-    });
-    const style = { width: `${sqsize}px`, height: `${sqsize}px` };
-    return (<div className={cname} key={item} style={style} onClick={() => this.handleClick(item)} />);
-  }
-
   render() {
     const { items } = this.state;
     return (
-      <div className='page-wrapper'>
-        <Scrollbars>
-          <div className="sq-list" style={{width: `${width * sqsize}px`, height: `${height * sqsize}px`}}>
-            {items.map(this.renderItem)}
-          </div>
-        </Scrollbars>
-      </div>
+      <FieldBody>
+        {items.map(item => (<FieldSquare key={item} item={item} state={this.state} handleClick={this.handleClick} />))}
+      </FieldBody>
     );
   }
 }
